@@ -1,8 +1,9 @@
 #pragma warning(disable: 4996)
 #include <fstream>
 #include <iostream>
-#include "Students_generator.h"
+#include "StudentsGenerator.hpp"
 
+FileHandler StudentsGenerator::filer_;
 
 StudentsGenerator::StudentsGenerator()
 {
@@ -18,6 +19,7 @@ StudentsGenerator::StudentsGenerator()
 StudentsGenerator::~StudentsGenerator()
 {
 	read_surname.close();
+
 	read_male_name.close();
 	read_male_second_name.close();
 
@@ -55,13 +57,13 @@ Student StudentsGenerator::generate_male()
 	Student male_student;
 	
 	//name selection
-	male_student.name = get_random_line(read_male_name, male_student.name);
+	male_student.name = filer_.get_random_line(read_male_name, male_student.name);
 
 	//second name selection
-	male_student.second_name = get_random_line(read_male_second_name, male_student.second_name);
+	male_student.second_name = filer_.get_random_line(read_male_second_name, male_student.second_name);
 
 	//surname selection
-	male_student.surname = get_random_line(read_surname, male_student.surname);
+	male_student.surname = filer_.get_random_line(read_surname, male_student.surname);
 
 	//Age calculation
 	male_student.age;
@@ -73,7 +75,7 @@ Student StudentsGenerator::generate_male()
 	male_student.course = (int)(rand() % 5 + 1);
 
 	//Avg calculation
-	male_student.avg = (rand() % 100) / 10 + 2;
+	male_student.avg = (rand() % 100) / 10.0 + 2; 
 
 	read_surname.seekg(0);
 	read_male_name.seekg(0);
@@ -88,13 +90,13 @@ Student StudentsGenerator::generate_female()
 	Student female_student;
 
 	//Select name
-	female_student.name = get_random_line(read_female_name, female_student.name);
+	female_student.name = filer_.get_random_line(read_female_name, female_student.name);
 
 	//Select second name
-	female_student.second_name = get_random_line(read_female_second_name, female_student.second_name);
+	female_student.second_name = filer_.get_random_line(read_female_second_name, female_student.second_name);
 
 	//Select surname
-	female_student.surname = get_random_line(read_surname, female_student.surname);
+	female_student.surname = filer_.get_random_line(read_surname, female_student.surname);
 
 	//Age calculation
 	female_student.age;
@@ -106,31 +108,11 @@ Student StudentsGenerator::generate_female()
 	female_student.course = (int)(rand() % 5 + 1);
 
 	//Avg calculation
-	female_student.avg = (rand() % 100) / 10 + 2;
+	female_student.avg = (rand() % 90) / 10.0 + 1;
 
 	read_surname.seekg(0);
 	read_female_name.seekg(0);
 	read_female_second_name.seekg(0);
 
 	return female_student;
-}
-	
-char* StudentsGenerator::get_random_line(std::ifstream& read, char* name)
-{
-	int num = 0, num_line = 0;
-	num = rand() % 100;
-	char* buffer = new char[20] {'\0'};
-
-	while (num != num_line)
-	{
-		read.getline(buffer, 20);
-		num_line++;
-	}
-	num_line = 0;
-	name = new char[strlen(buffer)];
-
-	strcpy(name, buffer);
-
-	delete[] buffer;
-	return name;
 }

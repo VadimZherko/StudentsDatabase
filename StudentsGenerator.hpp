@@ -1,8 +1,15 @@
 #pragma once
 #include <fstream>
-#include "Student.h"
-#include "Students_database.h"
-#include "Date.h"
+#include "Date.hpp"
+#include "Student.hpp"
+#include "FileHandler.hpp"
+
+enum StudentsDatabaseType
+{
+	Technical,//Percentage of women - 30%
+	Humanitarian, //Percentage of women - 70%
+	Standart //Percentage of women - 50%
+};
 
 struct StudentsGenerator
 {
@@ -11,7 +18,7 @@ public:
 	StudentsGenerator();
 	~StudentsGenerator();
 	Student* generate(const int SIZE, int type);
-	static StudentsGenerator gen;
+	static FileHandler filer_;
 
 private:
 
@@ -23,5 +30,4 @@ private:
 
 	Student generate_male();
 	Student generate_female();
-	char* get_random_line(std::ifstream&, char*);
 };

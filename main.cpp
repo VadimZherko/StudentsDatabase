@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include "Students_database.h"
+#include "StudentsDatabase.hpp"
 
 using namespace std;
 
@@ -14,9 +14,10 @@ void task7(StudentsDatabase&);
 
 int main()
 {
-	StudentsDatabase data; // TODO: конструктор для генерации
-	const int SIZE = 1000;
-	data.generate(SIZE, StudentsDatabaseType::Technical);
+	const int SIZE = 100;
+
+	StudentsDatabase data(SIZE, StudentsDatabaseType::Technical);
+
 	data.print();
 	task5(data);
 	data.save("students_0.txt");
@@ -38,7 +39,7 @@ void task1(StudentsDatabase& data)
 	data4 = data4.select_younger_than(age);
 	data5 = data5.select_younger_than(age);
 
-	data1.add(data2).add(data3).add(data4).add(data4);
+	data1.set(data2).set(data3).set(data4).set(data4); 
 	data1.save("task1.txt");
 }
 
@@ -62,20 +63,20 @@ void task3(StudentsDatabase& data)
 
 void task4(StudentsDatabase& data)
 {
-	StudentsDatabase new_data = data.select_more_than_avg(4.0);
+	StudentsDatabase new_data = data.select_avg_more_than(4.0);
 	new_data.save("task4.txt");
 }
 
 void task5(StudentsDatabase& data)
 {
-	StudentsDatabase new_data = data.select_less_than_avg(4.0);
+	StudentsDatabase new_data = data.select_avg_less_than(4.0);
 	new_data.save("task5.txt");
 }
 
 void task6(StudentsDatabase& data)
 {
-	float general_avg = data.get_avg();
-	StudentsDatabase new_data = data.select_more_than_avg(general_avg);
+	double general_avg = data.get_avg();
+	StudentsDatabase new_data = data.select_avg_more_than(general_avg);
 	new_data.save("task6.txt");
 }
 
@@ -88,12 +89,12 @@ void task7(StudentsDatabase& data)
 	StudentsDatabase data4 = data.select_by_course(4);
 	StudentsDatabase data5 = data.select_by_course(5);
 
-	data1 = data1.select_more_than_avg(data1.get_avg());
-	data2 = data2.select_more_than_avg(data2.get_avg());
-	data3 = data3.select_more_than_avg(data3.get_avg());
-	data4 = data4.select_more_than_avg(data4.get_avg());
-	data5 = data5.select_more_than_avg(data5.get_avg());
+	data1 = data1.select_avg_more_than(data1.get_avg());
+	data2 = data2.select_avg_more_than(data2.get_avg());
+	data3 = data3.select_avg_more_than(data3.get_avg());
+	data4 = data4.select_avg_more_than(data4.get_avg());
+	data5 = data5.select_avg_more_than(data5.get_avg());
 
-	data1.add(data2).add(data3).add(data4).add(data4);
+	data1.set(data2).set(data3).set(data4).set(data4);
 	data1.save("task7.txt");
 }
