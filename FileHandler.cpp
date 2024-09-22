@@ -42,7 +42,6 @@ char* FileHandler::get_random_line(char* name)
 
 	name = new char[strlen(buffer) + 1];
 	strcpy(name, buffer);
-
 	delete[] buffer;
 	this->file_.seekg(0);
 

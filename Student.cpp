@@ -26,11 +26,9 @@ void Student::operator=(Student& other)
 	sex = other.sex;
 }
 
-
-
 Student::~Student()
 {
-	if (surname) delete surname;
-	if (name) delete name;
-	if (second_name) delete second_name;
+	if (surname) delete[] surname;
+	if (name) delete[] name;
+	if (second_name) delete[] second_name;
 }

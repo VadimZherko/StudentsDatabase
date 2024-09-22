@@ -20,8 +20,7 @@ StudentsDatabase::~StudentsDatabase()
 {
 	if (students_)
 	{
-		std::cout << "Good bye" << std::endl;
-		delete[] students_;
+		if(students_) delete[] students_;
 	}
 }
 
@@ -229,9 +228,11 @@ StudentsDatabase StudentsDatabase::select_avg_less_than(const double general_avg
 StudentsDatabase StudentsDatabase::insert(const StudentsDatabase & old_data)
 {
 	int new_size = size_ + old_data.size_;
-	Student* buffer = new Student[new_size];
+	std::cout << "x";
+	Student* buffer = new Student[new_size + 1];
 	
-	for (auto i = 0; i < size_; i++)
+	std::cout << "x";
+	for (int i = 0; i < size_; i++)
 	{
 		buffer[i] = students_[i];
 	}

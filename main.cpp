@@ -17,14 +17,68 @@ int main()
 	const int SIZE = 100;
 
 	StudentsDatabase data(SIZE, StudentsDatabaseType::Technical);
+	int number_of_task = 0;
 
-	data.print();
-	task5(data);
-	data.save("students_0.txt");
+	std::cout << "List of tasks:" << std::endl;
+	std::cout << "Task 1" << std::endl;
+	std::cout << "Task 2" << std::endl;
+	std::cout << "Task 3" << std::endl;
+	std::cout << "Task 4" << std::endl;
+	std::cout << "Task 5" << std::endl;
+	std::cout << "Task 6" << std::endl;
+	std::cout << "Task 7" << std::endl;
+	std::cout << "Enter the task number to run it" << std::endl;
+
+	cin >> number_of_task;
+
+	switch(number_of_task)
+	{
+		case 1:
+		{
+			task1(data);
+			break;
+		}
+		case 2:
+		{
+			task2(data);
+			break;
+		}
+		case 3:
+		{
+			task3(data);
+			break;
+		}
+		case 4:
+		{
+			task4(data);
+			break;
+		}
+		case 5:
+		{
+			task5(data);
+			break;
+		}
+		case 6:
+		{
+			task6(data);
+			break;
+		}
+		case 7:
+		{
+			task7(data);
+			break;
+		}
+		default:
+		{
+			std::cout << "Error_input" << std::endl;
+		}
+	}
+	
 }
 
 void task1(StudentsDatabase& data)
 {
+		std::cout << "x";
 	StudentsDatabase data1 = data.select_by_course(1);
 	StudentsDatabase data2 = data.select_by_course(2);
 	StudentsDatabase data3 = data.select_by_course(3);

@@ -5,11 +5,11 @@
 
 
 StudentsGenerator::StudentsGenerator() :
-	surname("surname.txt"),
-	male_name("male_name.txt"),
-	male_second_name("male_second_name.txt"),
-	female_name("female_name.txt"),
-	female_second_name("female_second_name.txt"){}
+	surname("../names/surname.txt"),
+	male_name("../names/male_name.txt"),
+	male_second_name("../names/male_second_name.txt"),
+	female_name("../names/female_name.txt"),
+	female_second_name("../names/female_second_name.txt"){}
 
 Student* StudentsGenerator::generate(const int size, StudentsDatabaseType type)
 {
@@ -38,7 +38,7 @@ Student* StudentsGenerator::generate(const int size, StudentsDatabaseType type)
 void StudentsGenerator::generate_male(Student& student)
 {
 	int num = 0, num_line = 0, course = 0;
-	
+
 	//name selection
 	student.name = male_name.get_random_line(student.name);
 
