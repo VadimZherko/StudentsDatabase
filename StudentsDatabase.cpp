@@ -1,7 +1,9 @@
 #pragma warning(disable:4996)
 #include <fstream>
 #include <iostream>
+#include <string.h>
 #include "StudentsDatabase.hpp"
+
 
 StudentsGenerator StudentsDatabase::generator_;
 
@@ -16,17 +18,16 @@ StudentsDatabase::StudentsDatabase()
 
 StudentsDatabase::~StudentsDatabase()
 {
-	delete[] students_;
-	
+	if (students_)
+	{
+		std::cout << "Good bye" << std::endl;
+		delete[] students_;
+	}
 }
 
 void StudentsDatabase::generate(const int size, const StudentsDatabaseType type)
 {
-
 	size_ = size; 
-	students_ = generator_.generate(size, type);
-
-	int percent_womens = type;
 
 	if (type == StudentsDatabaseType::Humanitarian) students_ = generator_.generate(size, type);
 	else if (type == StudentsDatabaseType::Technical) students_ = generator_.generate(size, type);
@@ -35,16 +36,12 @@ void StudentsDatabase::generate(const int size, const StudentsDatabaseType type)
 
 void StudentsDatabase::save(const char* filename) const
 {
-	//Проблема с перегрузкой <<
+	FileHandler write(filename);
 
-	std::ofstream write(filename);
 	for (int i = 0; i < size_; i++)
 	{
-		write << students_[i].name << ' ' << students_[i].second_name << ' ' << students_[i].surname << ", " << students_[i].sex << ", ";
-		write << students_[i].age.get_day() << '/' << students_[i].age.get_month() << '/' << students_[i].age.get_year() << ", ";
-		write << students_[i].avg << ", " << students_[i].course << std::endl;
+		write << students_[i];
 	}
-	write.close();
 }
 
 void StudentsDatabase::print() const
@@ -229,8 +226,7 @@ StudentsDatabase StudentsDatabase::select_avg_less_than(const double general_avg
 	return new_data;
 }
 
-
-StudentsDatabase StudentsDatabase::set(const StudentsDatabase & old_data)
+StudentsDatabase StudentsDatabase::insert(const StudentsDatabase & old_data)
 {
 	int new_size = size_ + old_data.size_;
 	Student* buffer = new Student[new_size];
@@ -276,26 +272,37 @@ void StudentsDatabase::load(const char* filename)
 	for(auto i = 0; i < size; i++)
 	{
 		read.getline(str, 50);
+
+
 		str = strtok(str, " ,");
 		strcpy(this->students_[i].name, str);
+
 		str = strtok(str, " ,");
 		strcpy(this->students_[i].second_name, str);
+
 		str = strtok(str, " ,");
 		strcpy(this->students_[i].surname,str);
+
 		str = strtok(str, " ,");
 		if (is_number(str)) this->students_[i].sex = atoi(str);
 		else this->students_[i].sex = -1;
+
 		str = strtok(str, " ,");
 		if (is_number(str)) this->students_[i].age = atoi(str);
+
 		else this->students_[i].age = -1;
 		this->students_[i].age = atoi(str);
+
 		str = strtok(str, " ,");
 		this->students_[i].avg = atof(str);
+
 		if (is_number(str)) this->students_[i].avg = atoi(str);
 		else this->students_[i].avg = -1;
+
 		str = strtok(str, " ,");
 		if (is_number(str)) this->students_[i].course = atoi(str);
 		else this->students_[i].course = -1;
+
 		this->students_[i].course = atoi(str);
 	}
 

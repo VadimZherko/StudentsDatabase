@@ -1,9 +1,9 @@
 #pragma warning(disable: 4996)
 #include <iostream>
 #include "Date.hpp"
+#include <string.h>
 
 #define FEBRUARY 2
-// —читать даты
 
 Date::Date(int day, int month, int year)
 {
@@ -112,7 +112,6 @@ Date Date::age_calculation(Date& birthday) const
 
 Date Date::get_today_date() const
 {
-	
 	std::time_t t = time(nullptr);
 	std::tm* now = std::localtime(&t);
 
@@ -170,7 +169,7 @@ int Date::operator-(const Date& other) const
 	auto first_term = convert_date_to_days(*this);
 	auto second_term = convert_date_to_days(other);
 	
-	if (*this < other) first_term *= -1;
+	if (*this < other) first_term *= -1; // unnessesary
 	else second_term *= -1;
 
 	return first_term + second_term;
@@ -184,17 +183,9 @@ Date Date::operator-(const int second_term) const
 	if (first_term < second_term) first_term *= -1;
 	else second_term_ *= -1;
 
-	Date new_date(first_term + second_term);
+	Date new_date(first_term + second_term); // ?
 
 	return new_date;
-}
-
-int Date::operator+(const Date& other) const
-{
-	auto first_term = convert_date_to_days(*this);
-	auto second_term = convert_date_to_days(other);
-
-	return first_term + second_term;
 }
 
 Date Date::operator+(const int second_term) const
@@ -221,7 +212,7 @@ int Date::get_month() const
 	return this->month;
 }
 
-int Date::convert_date_to_days(const Date&) const
+int Date::convert_date_to_days(const Date&) const // ?
 {
 	int days = this->day + (this->year - 1) * 365;
 

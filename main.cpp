@@ -39,13 +39,13 @@ void task1(StudentsDatabase& data)
 	data4 = data4.select_younger_than(age);
 	data5 = data5.select_younger_than(age);
 
-	data1.set(data2).set(data3).set(data4).set(data4); 
+	data1.insert(data2).insert(data3).insert(data4).insert(data5);
 	data1.save("task1.txt");
 }
 
 void task2(StudentsDatabase& data)
 {
-	cout << "Введите букву для сравнения" << endl;
+	cout << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" << endl;
 	char letter;
 	cin >> letter;
 
@@ -95,6 +95,8 @@ void task7(StudentsDatabase& data)
 	data4 = data4.select_avg_more_than(data4.get_avg());
 	data5 = data5.select_avg_more_than(data5.get_avg());
 
-	data1.set(data2).set(data3).set(data4).set(data4);
+	data1.insert(data2).insert(data3).insert(data4).insert(data4);
 	data1.save("task7.txt");
+
+	auto full_data = data1 + data2 + data3;
 }

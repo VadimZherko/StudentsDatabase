@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/StudentsDatabase.dir/main.cpp.o CMakeFiles/StudentsDatabase.dir/StudentsDatabase.cpp.o CMakeFiles/StudentsDatabase.dir/Date.cpp.o CMakeFiles/StudentsDatabase.dir/FileHandler.cpp.o CMakeFiles/StudentsDatabase.dir/Student.cpp.o CMakeFiles/StudentsDatabase.dir/StudentsGenerator.cpp.o -o StudentsDatabase
