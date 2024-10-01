@@ -1,3 +1,0 @@
-/home/vadim/repository/Students_Database/build/CMakeFiles/StudentsDatabase.dir
-/home/vadim/repository/Students_Database/build/CMakeFiles/edit_cache.dir
-/home/vadim/repository/Students_Database/build/CMakeFiles/rebuild_cache.dir

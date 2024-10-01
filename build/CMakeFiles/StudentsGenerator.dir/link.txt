@@ -1,2 +1,0 @@
-/usr/bin/ar qc libStudentsGenerator.a CMakeFiles/StudentsGenerator.dir/StudentsGenerator.cpp.o
-/usr/bin/ranlib libStudentsGenerator.a
