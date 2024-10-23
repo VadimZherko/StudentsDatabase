@@ -30,16 +30,13 @@ FileHandler& FileHandler::operator<<(Student& student)
 char* FileHandler::get_random_line(char* name)
 {
 	int num = 0, num_line = 0;
-	num = rand() % 100; // (! убрать волшебное число)
 	char* buffer = new char[20] {'\0'};
+	int count_lines = 90;
+
+	num = rand() % count_lines;
 
 	while (num != num_line)
 	{
-		for(auto i = 0; i < 20; i++)
-		{
-		std::cout << file_.get() << ' ';
-		}
-		std::cout << "=================" << std::endl;
 		this->file_.getline(buffer, 20);
 		num_line++;
 	}
@@ -47,16 +44,6 @@ char* FileHandler::get_random_line(char* name)
 	
 	name = new char[strlen(buffer) + 1]{'\0'};
 	strcpy(name, buffer);
-
-
-	printf("name - ");
-	for (auto j = 0; j < strlen(buffer); j++)
-	{
-		printf("%d ", buffer[j]);
-	}
-	printf("%s \n", buffer);
-
-
 
 	delete[] buffer;
 	this->file_.seekg(0);

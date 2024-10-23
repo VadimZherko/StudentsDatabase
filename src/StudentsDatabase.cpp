@@ -18,10 +18,7 @@ StudentsDatabase::StudentsDatabase()
 
 StudentsDatabase::~StudentsDatabase()
 {
-	if (students_)
-	{
-		if(students_) delete[] students_;
-	}
+	if(students_) delete[] students_;
 }
 
 void StudentsDatabase::generate(const int size, const StudentsDatabaseType type)
@@ -47,26 +44,23 @@ void StudentsDatabase::print() const
 {
 	for (int i = 0; i < size_; i++)
 	{
-		
-
-		// std::cout << students_[i].name;
-		// std::cout << students_[i].second_name;
-		/*
+		std::cout << students_[i].name << " "  <<  students_[i].second_name << " " << students_[i].surname << ", ";
 		std::cout << students_[i].sex << ", " << students_[i].age.get_day() << '/' << students_[i].age.get_month() << '/' << students_[i].age.get_year() << ", ";
 		std::cout << students_[i].avg << ", " << students_[i].course << std::endl;
-		*/
 
 	}
 }
 
 StudentsDatabase StudentsDatabase::select_younger_than(const Date& age_) const
-{
+{	
 	StudentsDatabase new_data;
+
 	auto new_size = 0;
+	if(this->size_ == 0) return new_data;
 
 	for (auto i = 0; i < size_; i++)
 	{
-		new_size++;
+		if(this->students_->age < age_) new_size++;
 	}
 
 	new_data.students_ = new Student[new_size];
@@ -139,7 +133,7 @@ StudentsDatabase StudentsDatabase::select_older_than(const Date& age_) const
 StudentsDatabase StudentsDatabase::select_by_course(const int course) const
 {
 	StudentsDatabase new_data;
-	auto new_size = 0;
+	int new_size = 0;
 
 	for (auto i = 0; i < size_; i++)
 	{
@@ -150,7 +144,7 @@ StudentsDatabase StudentsDatabase::select_by_course(const int course) const
 	}
 
 	new_data.students_ = new Student[new_size];
-
+	
 	for (auto i = 0; i < new_size; i++)
 	{
 		if (course == students_[i].course)
@@ -231,7 +225,7 @@ StudentsDatabase StudentsDatabase::select_avg_less_than(const double general_avg
 	return new_data;
 }
 
-StudentsDatabase StudentsDatabase::insert(const StudentsDatabase & old_data)
+StudentsDatabase* StudentsDatabase::insert(const StudentsDatabase& old_data)
 {
 	int new_size = size_ + old_data.size_;
 	Student* buffer = new Student[new_size + 1];
@@ -243,15 +237,19 @@ StudentsDatabase StudentsDatabase::insert(const StudentsDatabase & old_data)
 
 	for (auto i = 0; i < old_data.size_; i++)
 	{
-		#pragma warning( disable : 6385 )
 		buffer[i + size_] = old_data.students_[i];
 	}
 
 	delete[] students_;
-	students_ = buffer;
-	size_ = new_size;
+	students_ = new Student[new_size + 1];
 
-	return *this;
+	for(int i = 0; i < new_size; i++)
+	{
+		students_[i] = buffer[i];
+	}
+
+	size_ = new_size;
+	return this;
 }
 
 bool StudentsDatabase::is_number(const char* str)
@@ -314,15 +312,20 @@ void StudentsDatabase::load(const char* filename)
 	delete[] str;
 }
 
-void StudentsDatabase::operator=(StudentsDatabase other)
+void StudentsDatabase::operator=(const StudentsDatabase& other)
 {
 	this->size_ = other.size_;
-	this->students_ = other.students_;
+	this->students_ = new Student[size_];
+	for(int i = 0; i < size_; i++)
+	{
+		this->students_[i] = other.students_[i];
+	}
 }
 
 StudentsDatabase StudentsDatabase::operator+(const StudentsDatabase& other) const
 {
 	StudentsDatabase new_data;
+
 	new_data.size_ = this->size_ + other.size_;
 	
 	new_data.students_ = new Student[new_data.size_];

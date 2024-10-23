@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "Date.hpp"
+#include "vector.hpp"
 
 struct Student
 {

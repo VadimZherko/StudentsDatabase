@@ -32,8 +32,8 @@ public:
 	StudentsDatabase select_avg_more_than(const double) const;
 	StudentsDatabase select_avg_less_than(const double) const;
 	StudentsDatabase select_by_course(const int) const;
-	StudentsDatabase insert(const StudentsDatabase&);
+	StudentsDatabase* insert(const StudentsDatabase&);
 
-	void operator=(StudentsDatabase other);
+	void operator=(const StudentsDatabase& other);
 	StudentsDatabase operator+(const StudentsDatabase&) const;
 };

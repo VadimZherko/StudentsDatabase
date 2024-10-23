@@ -5,11 +5,11 @@
 
 
 StudentsGenerator::StudentsGenerator() :
-	surname("../names/surname.txt"),
-	male_name("../names/male_name.txt"),
-	male_second_name("../names/male_second_name.txt"),
-	female_name("../names/female_name.txt"),
-	female_second_name("../names/female_second_name.txt"){}
+	surname("../data/names/surname.txt"),
+	male_name("../data/names/male_name.txt"),
+	male_second_name("../data/names/male_second_name.txt"),
+	female_name("../data/names/female_name.txt"),
+	female_second_name("../data/names/female_second_name.txt"){}
 
 Student* StudentsGenerator::generate(const int size, StudentsDatabaseType type)
 {
@@ -17,6 +17,7 @@ Student* StudentsGenerator::generate(const int size, StudentsDatabaseType type)
 	if (type == StudentsDatabaseType::Humanitarian) percent_womens = 70;
 	else if (type == StudentsDatabaseType::Technical) percent_womens = 30;
 	else if (type == StudentsDatabaseType::Standart) percent_womens = 50;
+	else if (type = StudentsDatabaseType::Mens) percent_womens = 0;
 	else
 	{
 		printf("ERROR: type mismatch");

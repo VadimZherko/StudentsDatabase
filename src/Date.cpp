@@ -4,6 +4,7 @@
 #include <string.h>
 
 #define FEBRUARY 2
+#define MY_ERROR_CODE -42
 
 Date::Date(int day, int month, int year)
 {
@@ -49,13 +50,13 @@ Date::Date()
 void Date::set(int day, int month, int year)
 {
 	if (year > 0) this->year = year;
-	else this->year = rand() % 10000; // wtf
+	else this->year = 1;
 
 	if (month > 0 && month <= NUMBER_OF_MONTHS) this->month = month;
-	else this->month = rand() / 12 + 1;
+	else this->month = 1;
 
 	if (day <= 31 && day > 0 && is_correct_days(day, this->month, this->year)) this->day = day;
-	else this->day = rand() % 28;
+	else this->day = 1;
 }
 
 bool Date::is_leep_year(int year) const
@@ -169,10 +170,8 @@ int Date::operator-(const Date& other) const
 	auto first_term = convert_date_to_days(*this);
 	auto second_term = convert_date_to_days(other);
 	
-	if (*this < other) first_term *= -1; // unnessesary
-	else second_term *= -1;
-
-	return first_term + second_term;
+	if (first_term > second_term) return first_term - second_term;
+	else return MY_ERROR_CODE;
 }
 
 Date Date::operator-(const int second_term) const
@@ -180,12 +179,16 @@ Date Date::operator-(const int second_term) const
 	auto first_term = convert_date_to_days(*this);
 	auto second_term_ = second_term;
 
-	if (first_term < second_term) first_term *= -1;
-	else second_term_ *= -1;
-
-	Date new_date(first_term + second_term); // ?
-
-	return new_date;
+	if (first_term > second_term)
+	{
+		Date new_date(first_term - second_term);
+		return new_date;
+	}
+	else
+	{
+		Date new_date(1, 1, 1);
+		return new_date;
+	}
 }
 
 Date Date::operator+(const int second_term) const

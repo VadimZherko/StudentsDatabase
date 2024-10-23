@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include "StudentsDatabase.hpp"
+#include <StudentsDatabase.hpp>
 
 using namespace std;
 
@@ -14,15 +14,12 @@ void task7(StudentsDatabase&);
 
 int main()
 {
-	const int SIZE = 1;
+	const int SIZE = 100;
 
 	StudentsDatabase data(SIZE, StudentsDatabaseType::Technical);
-	
 	int number_of_task = 0;
 
-	data.print();
-
-	/*std::cout << "List of tasks:" << std::endl;
+	std::cout << "List of tasks:" << std::endl;
 	std::cout << "Task 1" << std::endl;
 	std::cout << "Task 2" << std::endl;
 	std::cout << "Task 3" << std::endl;
@@ -33,7 +30,7 @@ int main()
 	std::cout << "Output base 8" << std::endl;
 	std::cout << "Enter the task number to run it" << std::endl;
 
-	cin >> number_of_task;
+	std::cin >> number_of_task;
 
 	switch(number_of_task)
 	{
@@ -81,7 +78,7 @@ int main()
 		{
 			std::cout << "Error_input" << std::endl;
 		}
-	}*/
+	}
 	
 }
 
@@ -92,7 +89,7 @@ void task1(StudentsDatabase& data)
 	StudentsDatabase data3 = data.select_by_course(3);
 	StudentsDatabase data4 = data.select_by_course(4);
 	StudentsDatabase data5 = data.select_by_course(5);
-
+	
 	Date age(31, 12, 2222);
 
 	data1 = data1.select_younger_than(age);
@@ -101,7 +98,7 @@ void task1(StudentsDatabase& data)
 	data4 = data4.select_younger_than(age);
 	data5 = data5.select_younger_than(age);
 
-	data1.insert(data2).insert(data3).insert(data4).insert(data5);
+	data1.insert(data2)->insert(data3)->insert(data4)->insert(data5);
 	data1.save("task1.txt");
 	data1.print();
 }
@@ -163,9 +160,7 @@ void task7(StudentsDatabase& data)
 	data4 = data4.select_avg_more_than(data4.get_avg());
 	data5 = data5.select_avg_more_than(data5.get_avg());
 
-	data1.insert(data2).insert(data3).insert(data4).insert(data4);
+	data1.insert(data2)->insert(data3)->insert(data4)->insert(data4);
 	data1.save("task7.txt");
 	data1.print();
-
-	auto full_data = data1 + data2 + data3;
 }

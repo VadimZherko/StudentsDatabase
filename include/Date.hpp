@@ -32,6 +32,5 @@ public:
 
 	int operator-(const Date& other) const;
 	Date operator-(const int days) const;
-	int operator+(const Date& other) const;
 	Date operator+(const int days) const;
 };

@@ -8,7 +8,8 @@ enum StudentsDatabaseType
 {
 	Technical,//Percentage of women - 30%
 	Humanitarian, //Percentage of women - 70%
-	Standart //Percentage of women - 50%
+	Standart, //Percentage of women - 50%
+	Mens // Pecentage of women - 0%
 };
 
 struct StudentsGenerator
