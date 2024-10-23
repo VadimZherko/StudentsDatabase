@@ -126,7 +126,7 @@ void task3(StudentsDatabase& data)
 void task4(StudentsDatabase& data)
 {
 	StudentsDatabase new_data = data.select_avg_more_than(4.0);
-	new_data.save("task4.txt");
+	new_data.save("../src/task4.txt");
 	new_data.print();
 }
 

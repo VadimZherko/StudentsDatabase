@@ -1,2 +1,0 @@
-/usr/bin/ar qc libStudents_Database.a CMakeFiles/Students_Database.dir/StudentsDatabase.o
-/usr/bin/ranlib libStudents_Database.a
