@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/students_database.dir/src/main.cpp.o -o students_database  -Wl,-rpath,/home/vadim/repository/Students_Database/build: libDate.so libStudentsDatabase.so libStudent.so libStudentsGenerator.so libFileHandler.so

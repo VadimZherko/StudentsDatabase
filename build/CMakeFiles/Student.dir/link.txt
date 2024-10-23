@@ -1,1 +1,0 @@
-/usr/bin/c++ -fPIC -shared -Wl,-soname,libStudent.so -o libStudent.so CMakeFiles/Student.dir/src/Student.cpp.o

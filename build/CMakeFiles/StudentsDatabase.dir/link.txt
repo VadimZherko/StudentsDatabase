@@ -1,1 +1,0 @@
-/usr/bin/c++ -fPIC -shared -Wl,-soname,libStudentsDatabase.so -o libStudentsDatabase.so CMakeFiles/StudentsDatabase.dir/src/StudentsDatabase.cpp.o
